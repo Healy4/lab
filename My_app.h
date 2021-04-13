@@ -2,14 +2,11 @@
 #define MY_APP_H
 #include "My.h"
 
-class My_app : public My
+class My_app : public My 
 {
-public:
-	My_app();
-	void buildTree();
-	int exec();
-private:
-	My *C_parr;
-	My *C_chil;
+	public:
+		My_app(My *parent, string name = "Default");
+		void buildTree();
+		int exec();
 };
 #endif
