@@ -1,8 +1,4 @@
 #include "Ur.h"
+#include <iostream>
 
-using namespace std;
-
-/*Ur::Ur(My *parent, string name) {
-	setParent(parent);
-	setName(name);
-};*/
+Ur::Ur( My *parent, string name) : My(parent, name) {};
