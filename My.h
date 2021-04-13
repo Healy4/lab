@@ -1,43 +1,39 @@
 #ifndef MY_H
 #define MY_H
 #include <iostream>
+#include <cstdlib>
 #include <string>
 #include <vector>
 
 using namespace std;
-
 class My
 {
-public:
-
-	My(My* parent = 0, string = "Base");
-
-	void   setName (string); //Назначить имя
-	string getName (); //Получить имя
-
-	void setParent   (My *obj); //Назначить родителя
-	My   getParent   (); //Получить родителя
-
-	void delChild(My *p_child);
-	void addChild(string obj_name);
-
-	void printName(); //
-	//void exec();
-
-	//unsigned int get_count(); //кол-во детей
-
-	void printTree(int i_level = 0); //построить дерево объектов
-	void showObj();
-	void showObjNext(My * parent, int i_level);
-	//~My();
-
-	vector <My*> children;
-	vector <My*>::iterator children_iter;
-private:
-	string name;
-	My *parent;
-
-
-
+	public:
+	
+		My(My* parent, string name = "Unknown");
+		~My();
+		
+		void setName(string name); //РќР°Р·РЅР°С‡РёС‚СЊ РёРјСЏ
+		string getName(); //РџРѕР»СѓС‡РёС‚СЊ РёРјСЏ
+		
+		void setParent(My* parent); //РќР°Р·РЅР°С‡РёС‚СЊ СЂРѕРґРёС‚РµР»СЏ
+		My* getParent(); //РџРѕР»СѓС‡РёС‚СЊ СЂРѕРґРёС‚РµР»СЏ
+		
+		void addChild(My* child); //РќР°Р·РЅР°С‡РёС‚СЊ СЂРµР±РµРЅРєР°
+		//My*  getChild(); //РџРѕР»СѓС‡РёС‚СЊ СЂРµР±РµРЅРєР°
+		//bool hasChild() const;
+		
+		void printChilds(); //Р’С‹РІРѕРґ РІСЃРµС… РґРѕС‡РµСЂРЅРёС… РѕР±СЉРµРєС‚РѕРІ	
+		
+		//unsigned int get_count(); //РєРѕР»-РІРѕ РґРµС‚РµР№
+		//void printTree(int i_level = 0); //РїРѕСЃС‚СЂРѕРёС‚СЊ РґРµСЂРµРІРѕ РѕР±СЉРµРєС‚РѕРІ
+		My* searchObj(string name);
+	private:
+	
+		string myName;
+		My *myParent;
+		
+		vector <My*> children;
+		
 };
 #endif
