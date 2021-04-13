@@ -1,37 +1,53 @@
 #include "My_app.h"
-//#include "My.h"
 #include "Ur.h"
+#include "Ur2.h"
 
-using namespace std;
 
-//My_app::My_app(My *parent) : My(parent) {};
+My_app::My_app(My *parent, string name) : My(parent, name) {};
 
-void My_app::buildTree()
+void My_app::buildTree() 
 {
-	string parr_name, chil_name;
-	cin >> parr_name;
-	setName(parr_name);
-
-	C_parr = this;
-	do {
-		cin >> parr_name >> chil_name;
-
-		if (parr_name == chil_name) return;
-		if (parr_name != C_chil->getName())
+	string app_name, chil_name;
+	cin >> app_name;
+	setName(app_name);
+	
+	string parent, name;
+	My *current_o = this;
+	My *recent_o = nullptr;
+	
+	int i = 0;
+	while (true)  {
+		cin >> parent >> name;
+		i++;
+		if (parent == name) return;
+		else {
+		if (current_o->getName() == parent) 
 		{
-			if (parr_name == C_chil->getName()) {
-				C_parr = C_chil;
+			if (i % 2) {
+				recent_o = new Ur(current_o, name);
+			} else {
+				recent_o = new Ur2(current_o, name);
 			}
-			else continue;
-
 		}
-		C_chil = new Ur(C_parr, chil_name);
-	} while (true);
+		else {
+			if (recent_o->getName() == parent) {
+				current_o = recent_o;
+				if (i % 2) {
+					recent_o = new Ur(current_o, name);
+				} else {
+					recent_o = new Ur2(current_o, name);
+				}
+			}
+		}
+			
+		}
+		
+	}
 };
 
-int My_app::exec()
+int My_app::exec() 
 {
-	cout << getName() << endl;
-	printName();
+	cout << getName();
+	printChilds();
 	return 0;
 };
